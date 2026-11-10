@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useMemo, useRef, useState } from 'react'
 import type { FormEvent } from 'react'
 import { brand } from '../data/content'
 
@@ -65,6 +65,7 @@ export function BookNow() {
   const [errors, setErrors] = useState<Partial<Record<keyof FormState, string>>>({})
   const [status, setStatus] = useState<'idle' | 'ready' | 'copied'>('idle')
   const [inquiryText, setInquiryText] = useState('')
+  const fileInputRef = useRef<HTMLInputElement>(null)
 
   const showBalloonColors = form.balloons === 'yes'
 
@@ -129,12 +130,12 @@ export function BookNow() {
   }
 
   return (
-    <section className="page page--narrow" aria-labelledby="book-heading">
+    <section id="book" className="page page--narrow section-anchor" aria-labelledby="book-heading">
       <header className="page-header glass glass--quiet glass-enter">
         <p className="eyebrow">Inquire</p>
-        <h1 id="book-heading" className="section-title">
+        <h2 id="book-heading" className="section-title">
           Book Now
-        </h1>
+        </h2>
         <p className="section-copy">
           Share a few details and we&apos;ll follow up to collaborate on your look. This MVP form
           stays in your browser — after you submit, you can open a draft email or copy the inquiry
@@ -231,24 +232,38 @@ export function BookNow() {
             {errors.description && <span className="field-error">{errors.description}</span>}
           </div>
           <div className="field">
-            <label htmlFor="inspiration">Inspiration attachments</label>
+            <span className="field-label" id="inspiration-label">
+              Inspiration attachments
+            </span>
             <input
+              ref={fileInputRef}
               id="inspiration"
               type="file"
               name="inspiration"
+              className="file-input-native"
               accept="image/*,.pdf"
               multiple
+              aria-labelledby="inspiration-label"
               onChange={(e) =>
                 setFileNames(Array.from(e.target.files ?? []).map((file) => file.name))
               }
             />
+            <div className="file-picker">
+              <button
+                type="button"
+                className="btn btn--secondary file-picker__btn"
+                onClick={() => fileInputRef.current?.click()}
+              >
+                Choose files
+              </button>
+              <span className="file-picker__names">
+                {fileNames.length > 0 ? fileNames.join(', ') : 'No files selected'}
+              </span>
+            </div>
             <span className="field-hint">
               MVP stores filenames only (not the files). Connect Formspree or similar later for true
               uploads.
             </span>
-            {fileNames.length > 0 && (
-              <span className="field-hint">Selected: {fileNames.join(', ')}</span>
-            )}
           </div>
         </fieldset>
 
@@ -271,8 +286,8 @@ export function BookNow() {
             <p className="choice-group__label" id="plinths-label">
               Do you need a plinth(s)?
             </p>
-            <div className="choice-group__options">
-              <label className="choice">
+            <div className="choice-group__options choice-group__options--toggle" role="presentation">
+              <label className={`choice choice--toggle${form.plinths === 'yes' ? ' is-selected' : ''}`}>
                 <input
                   type="radio"
                   name="plinths"
@@ -281,7 +296,7 @@ export function BookNow() {
                 />
                 Yes
               </label>
-              <label className="choice">
+              <label className={`choice choice--toggle${form.plinths === 'no' ? ' is-selected' : ''}`}>
                 <input
                   type="radio"
                   name="plinths"
@@ -298,8 +313,8 @@ export function BookNow() {
             <p className="choice-group__label" id="balloons-label">
               Do you need balloons?
             </p>
-            <div className="choice-group__options">
-              <label className="choice">
+            <div className="choice-group__options choice-group__options--toggle" role="presentation">
+              <label className={`choice choice--toggle${form.balloons === 'yes' ? ' is-selected' : ''}`}>
                 <input
                   type="radio"
                   name="balloons"
@@ -308,7 +323,7 @@ export function BookNow() {
                 />
                 Yes
               </label>
-              <label className="choice">
+              <label className={`choice choice--toggle${form.balloons === 'no' ? ' is-selected' : ''}`}>
                 <input
                   type="radio"
                   name="balloons"

@@ -3,6 +3,7 @@ type LogoMarkProps = {
   className?: string
 }
 
+/** Forest/bronze strokes — readable on pale oak without a dark backing slab. */
 export function LogoMark({ size = 120, className = '' }: LogoMarkProps) {
   return (
     <svg
@@ -15,18 +16,18 @@ export function LogoMark({ size = 120, className = '' }: LogoMarkProps) {
       role="img"
       aria-label="Kat Kreationz logo"
     >
-      <circle cx="80" cy="80" r="72" stroke="var(--gold)" strokeWidth="1.4" />
-      <circle cx="80" cy="80" r="66" stroke="var(--gold)" strokeWidth="0.7" opacity="0.75" />
+      <circle cx="80" cy="80" r="72" stroke="var(--bronze)" strokeWidth="1.4" />
+      <circle cx="80" cy="80" r="66" stroke="var(--bronze-mid)" strokeWidth="0.7" opacity="0.75" />
       <path
         d="M48 48 L48 112 M48 80 L82 48 M48 80 L82 112"
-        stroke="var(--ivory)"
+        stroke="var(--forest-deep)"
         strokeWidth="5"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <path
         d="M72 48 L72 112 M72 80 L106 48 M72 80 L106 112"
-        stroke="var(--ivory)"
+        stroke="var(--forest)"
         strokeWidth="5"
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -34,14 +35,14 @@ export function LogoMark({ size = 120, className = '' }: LogoMarkProps) {
       />
       <path
         d="M28 108 C38 98, 44 84, 48 68 C52 84, 58 98, 70 110"
-        stroke="var(--ivory)"
+        stroke="var(--forest-mid)"
         strokeWidth="1.6"
         strokeLinecap="round"
         fill="none"
       />
       <path
         d="M34 104 C40 96, 44 88, 46 78"
-        stroke="var(--ivory)"
+        stroke="var(--forest-soft)"
         strokeWidth="1.2"
         strokeLinecap="round"
         fill="none"

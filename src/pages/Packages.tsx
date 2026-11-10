@@ -1,14 +1,23 @@
-import { Link } from 'react-router-dom'
 import { packages } from '../data/content'
 
-export function Packages() {
+type PackagesProps = {
+  onNavigate: (id: 'book' | 'packages' | 'inventory' | 'home') => void
+}
+
+const toneClass: Record<string, string> = {
+  intimate: 'package--intimate',
+  celebration: 'package--celebration',
+  signature: 'package--signature',
+}
+
+export function Packages({ onNavigate }: PackagesProps) {
   return (
-    <section className="page" aria-labelledby="packages-heading">
+    <section id="packages" className="page section-anchor" aria-labelledby="packages-heading">
       <header className="page-header glass glass--quiet glass-enter">
         <p className="eyebrow">Offerings</p>
-        <h1 id="packages-heading" className="section-title">
+        <h2 id="packages-heading" className="section-title">
           Packages
-        </h1>
+        </h2>
         <p className="section-copy">
           Starting points you can tailor. Every celebration is collaborative — tell us what matters
           most and we&apos;ll shape the rest.
@@ -19,10 +28,9 @@ export function Packages() {
         {packages.map((pkg, index) => (
           <article
             key={pkg.id}
-            className={`package glass glass-enter glass-enter--delay-${Math.min(index + 1, 5)}`}
+            className={`package glass glass-enter glass-enter--delay-${Math.min(index + 1, 5)} ${toneClass[pkg.id] ?? ''}`}
           >
-            <p className="eyebrow">{pkg.idealFor}</p>
-            <h2>{pkg.name}</h2>
+            <h3>{pkg.name}</h3>
             <p className="package__price">{pkg.priceLabel}</p>
             <p className="package__summary">{pkg.summary}</p>
             <ul>
@@ -30,9 +38,13 @@ export function Packages() {
                 <li key={line}>{line}</li>
               ))}
             </ul>
-            <Link className="btn btn--primary" to="/book">
+            <button
+              type="button"
+              className="btn btn--primary"
+              onClick={() => onNavigate('book')}
+            >
               Inquire about {pkg.name}
-            </Link>
+            </button>
           </article>
         ))}
       </div>
