@@ -211,6 +211,47 @@ textarea {
     );
 }
 
+/* Faint brand motif: concentric circles + botanical lines under all content */
+.site-motif {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  opacity: 0.11;
+}
+
+.site-motif__svg {
+  position: absolute;
+  width: min(72vw, 520px);
+  height: min(72vw, 520px);
+  color: var(--forest);
+}
+
+.site-motif__svg--primary {
+  top: 42%;
+  left: 50%;
+  transform: translate(-52%, -38%);
+}
+
+.site-motif__svg--secondary {
+  right: -6%;
+  bottom: 4%;
+  width: min(48vw, 340px);
+  height: min(48vw, 340px);
+  color: var(--forest-mid);
+  opacity: 0.85;
+}
+
+.site-motif__svg--tertiary {
+  left: -8%;
+  top: 18%;
+  width: min(36vw, 260px);
+  height: min(36vw, 260px);
+  color: var(--bronze);
+  opacity: 0.55;
+}
+
 .shell {
   width: min(100%, var(--shell));
   max-width: var(--shell);
@@ -219,6 +260,7 @@ textarea {
   display: flex;
   flex-direction: column;
   position: relative;
+  z-index: 1;
   margin-inline: auto;
 }
 
@@ -514,6 +556,7 @@ textarea {
   letter-spacing: -0.01em;
   line-height: 1.18;
   text-wrap: balance;
+  color: var(--forest);
 }
 
 .section-copy {
@@ -554,6 +597,7 @@ textarea {
 .hero__content .brand-script {
   margin: 0.2rem 0 0;
   font-size: clamp(2.35rem, 6.5vw, 3.5rem);
+  color: color-mix(in srgb, var(--ivory) 86%, var(--forest-light) 14%);
   text-shadow: 0 8px 24px rgba(61, 52, 44, 0.1);
 }
 
@@ -765,7 +809,7 @@ textarea {
   font-weight: 700;
   letter-spacing: 0.02em;
   text-align: left;
-  color: var(--ivory);
+  color: var(--forest);
 }
 
 .inventory-list {
@@ -805,6 +849,7 @@ textarea {
   font-weight: 700;
   letter-spacing: -0.01em;
   text-wrap: balance;
+  color: var(--accent-deep);
 }
 
 .inventory-item__blurb {
@@ -857,6 +902,7 @@ textarea {
   font-weight: 700;
   letter-spacing: -0.01em;
   text-wrap: balance;
+  color: var(--forest);
 }
 
 .package__price {
@@ -925,6 +971,7 @@ textarea {
   font-size: 1.2rem;
   font-weight: 700;
   letter-spacing: -0.01em;
+  color: var(--accent);
 }
 
 .field-grid {
