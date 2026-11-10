@@ -19,30 +19,15 @@ function MotifMark({ className }: { className: string }) {
       xmlns="http://www.w3.org/2000/svg"
       aria-hidden="true"
     >
-      <circle cx="100" cy="100" r="92" stroke="currentColor" strokeWidth="1" />
-      <circle cx="100" cy="100" r="78" stroke="currentColor" strokeWidth="0.7" opacity="0.75" />
-      <circle cx="100" cy="100" r="62" stroke="currentColor" strokeWidth="0.55" opacity="0.55" />
-      <circle cx="100" cy="100" r="44" stroke="currentColor" strokeWidth="0.45" opacity="0.4" />
+      <circle cx="100" cy="100" r="88" stroke="currentColor" strokeWidth="1" />
+      <circle cx="100" cy="100" r="64" stroke="currentColor" strokeWidth="0.6" opacity="0.55" />
+      <circle cx="100" cy="100" r="40" stroke="currentColor" strokeWidth="0.45" opacity="0.35" />
       <path
         d="M48 138 C62 118, 72 94, 78 66 C84 94, 96 118, 118 140"
         stroke="currentColor"
-        strokeWidth="1.2"
+        strokeWidth="1.15"
         strokeLinecap="round"
-        opacity="0.7"
-      />
-      <path
-        d="M56 132 C66 118, 72 102, 76 86"
-        stroke="currentColor"
-        strokeWidth="0.9"
-        strokeLinecap="round"
-        opacity="0.5"
-      />
-      <path
-        d="M132 58 C146 72, 154 90, 158 112"
-        stroke="currentColor"
-        strokeWidth="0.85"
-        strokeLinecap="round"
-        opacity="0.45"
+        opacity="0.65"
       />
     </svg>
   )
@@ -52,9 +37,8 @@ export function Layout() {
   return (
     <div className="site">
       <div className="site-motif" aria-hidden="true">
-        <MotifMark className="site-motif__svg site-motif__svg--primary" />
-        <MotifMark className="site-motif__svg site-motif__svg--secondary" />
-        <MotifMark className="site-motif__svg site-motif__svg--tertiary" />
+        <MotifMark className="site-motif__svg" />
+        <MotifMark className="site-motif__svg site-motif__svg--accent" />
       </div>
 
       <div className="shell">
@@ -81,7 +65,9 @@ export function Layout() {
           </header>
         </div>
 
-        {/* Scrollport: content-only opacity fade via mask — no colored underlay */}
+        {/* Static under-nav fade — avoids mask-image on the scrolling container */}
+        <div className="shell-scroll-veil" aria-hidden="true" />
+
         <div className="shell-scroll">
           <main className="site-main">
             <PageFade />
