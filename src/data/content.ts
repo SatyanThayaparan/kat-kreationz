@@ -67,6 +67,7 @@ export type PackageOffer = {
   summary: string
   includes: string[]
   idealFor: string
+  priceLabel: string
 }
 
 export const packages: PackageOffer[] = [
@@ -76,6 +77,7 @@ export const packages: PackageOffer[] = [
     summary: 'A focused statement piece for smaller gatherings and photo corners.',
     includes: ['One arch or backdrop', 'Two plinths', 'Soft balloon accent (optional)', 'Setup (min. 2 hrs)'],
     idealFor: 'Showers, dinners, intimate birthdays',
+    priceLabel: 'From $350',
   },
   {
     id: 'celebration',
@@ -88,6 +90,7 @@ export const packages: PackageOffer[] = [
       'Setup + scheduled pickup window',
     ],
     idealFor: 'Birthdays, engagements, milestone parties',
+    priceLabel: 'From $650',
   },
   {
     id: 'signature',
@@ -101,5 +104,6 @@ export const packages: PackageOffer[] = [
       'Post-event equipment pickup',
     ],
     idealFor: 'Weddings, corporate welcomes, styled shoots',
+    priceLabel: 'Custom quote',
   },
 ]

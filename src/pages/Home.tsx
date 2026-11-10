@@ -23,7 +23,7 @@ export function Home() {
             <Link className="btn btn--primary" to="/book">
               Book Now
             </Link>
-            <Link className="btn btn--ghost" to="/packages">
+            <Link className="btn btn--secondary" to="/packages">
               View packages
             </Link>
           </div>

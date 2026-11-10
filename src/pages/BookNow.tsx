@@ -381,7 +381,7 @@ export function BookNow() {
             <a className="btn btn--primary" href={mailtoHref}>
               Open email draft
             </a>
-            <button type="button" className="btn btn--ghost" onClick={copyInquiry}>
+            <button type="button" className="btn btn--secondary" onClick={copyInquiry}>
               {status === 'copied' ? 'Copied' : 'Copy inquiry'}
             </button>
           </div>

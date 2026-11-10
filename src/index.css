@@ -1,12 +1,16 @@
 :root {
   /*
     Earthy analogous 60 / 30 / 10
-    60 Dominant — Dark Beige (page fields, large surfaces)
-    30 Secondary — Soft burnt caramel (glass panels, secondary UI)
-    10 Accent — Deep forest green (CTAs, active nav, focal points)
+    60 Dominant — Dark beige (page fields, large surfaces)
+    30 Secondary — Soft burnt caramel (glass panels, secondary UI — tints/shades)
+    10 Accent — Forest green (CTAs, active nav) + bronze/burnt amber
+      (highlights, icons, underlines, focus rings, price chips, hovers — sparingly)
   */
-  --beige: #b89778;
+
+  /* —— Beige ladder (60%) —— */
+  --beige-deepest: #8a6d52;
   --beige-deep: #9a7a5c;
+  --beige: #b89778;
   --beige-mid: #c4a484;
   --beige-soft: #d0b59a;
   --beige-mist: #dcc9b0;
@@ -22,24 +26,52 @@
   --tan-mist: var(--beige-mist);
   --tan-glow: var(--beige-glow);
 
-  --caramel: #a56f45;
+  /* —— Caramel ladder (30%) —— */
+  --caramel-deepest: #6f4528;
   --caramel-deep: #8b5a36;
+  --caramel: #a56f45;
+  --caramel-mid: #b87d52;
   --caramel-soft: #c4895f;
+  --caramel-light: #d4a078;
   --caramel-mist: rgba(165, 111, 69, 0.3);
+  --caramel-wash: rgba(165, 111, 69, 0.14);
+  --caramel-glow: rgba(196, 137, 95, 0.42);
 
-  --accent: #2f4f3c;
-  --accent-deep: #243d2e;
-  --accent-soft: #3f6650;
-  --accent-glow: rgba(47, 79, 60, 0.22);
+  /* —— Forest green ladder (10% primary accent) —— */
+  --forest-deepest: #1a2e22;
+  --forest-deep: #243d2e;
+  --forest: #2f4f3c;
+  --forest-mid: #3a5c47;
+  --forest-soft: #3f6650;
+  --forest-light: #557a64;
+  --forest-glow: rgba(47, 79, 60, 0.24);
+  --forest-mist: rgba(47, 79, 60, 0.12);
+
+  /* Accent aliases → forest (primary 10%) */
+  --accent: var(--forest);
+  --accent-deep: var(--forest-deep);
+  --accent-mid: var(--forest-mid);
+  --accent-soft: var(--forest-soft);
+  --accent-light: var(--forest-light);
+  --accent-glow: var(--forest-glow);
+
+  /* —— Bronze / burnt amber ladder (10% secondary accent — sparingly) —— */
+  --bronze-deep: #7a4a1e;
+  --bronze: #9a5f28;
+  --bronze-mid: #b87333;
+  --bronze-soft: #c9843d;
+  --bronze-light: #d9a05a;
+  --bronze-glow: rgba(154, 95, 40, 0.28);
+  --bronze-mist: rgba(154, 95, 40, 0.16);
 
   --ivory: #f7f1ea;
   --ivory-soft: rgba(247, 241, 234, 0.9);
   --ivory-muted: rgba(247, 241, 234, 0.68);
   --ink: #2c2620;
   --ink-soft: rgba(44, 38, 32, 0.72);
-  /* Warm ring / underline neighbor (not a second accent) */
-  --gold: var(--caramel-soft);
-  --gold-deep: var(--caramel);
+  /* Warm highlight aliases → bronze */
+  --gold: var(--bronze-soft);
+  --gold-deep: var(--bronze);
   --line: rgba(247, 241, 234, 0.26);
   --line-strong: rgba(247, 241, 234, 0.4);
   /*
@@ -48,8 +80,10 @@
   */
   --glass-fill: rgba(246, 236, 224, 0.22);
   --glass-fill-strong: rgba(246, 236, 224, 0.32);
-  --glass-edge: rgba(196, 137, 95, 0.38);
-  --glass-highlight: rgba(255, 252, 248, 0.5);
+  --glass-edge: rgba(196, 137, 95, 0.42);
+  --glass-edge-warm: rgba(154, 95, 40, 0.36);
+  --glass-highlight: rgba(255, 252, 248, 0.55);
+  --glass-highlight-bronze: rgba(217, 160, 90, 0.18);
   --glass-blur: 12px;
   --glass-radius: 1.15rem;
   --shadow-soft: 0 16px 40px rgba(44, 38, 32, 0.14);
@@ -98,7 +132,8 @@ body {
   background-color: var(--bg);
   background-image:
     radial-gradient(ellipse 55% 40% at 88% 18%, rgba(247, 241, 234, 0.12), transparent 52%),
-    radial-gradient(ellipse 45% 35% at 70% 78%, rgba(165, 111, 69, 0.26), transparent 60%),
+    radial-gradient(ellipse 38% 30% at 12% 28%, var(--forest-mist), transparent 58%),
+    radial-gradient(ellipse 45% 35% at 70% 78%, var(--caramel-mist), transparent 60%),
     linear-gradient(
       180deg,
       var(--bg) 0,
@@ -153,8 +188,9 @@ textarea {
   pointer-events: none;
   z-index: -1;
   background:
-    radial-gradient(circle at 20% 60%, rgba(165, 111, 69, 0.1), transparent 28%),
-    radial-gradient(circle at 82% 40%, rgba(47, 79, 60, 0.06), transparent 24%);
+    radial-gradient(circle at 20% 60%, var(--caramel-wash), transparent 28%),
+    radial-gradient(circle at 82% 40%, var(--forest-mist), transparent 24%),
+    radial-gradient(circle at 55% 18%, var(--bronze-mist), transparent 22%);
   animation: atmosphere 18s ease-in-out infinite alternate;
 }
 
@@ -250,20 +286,29 @@ textarea {
 
 .glass {
   background:
-    linear-gradient(155deg, var(--glass-highlight), transparent 42%),
+    linear-gradient(155deg, var(--glass-highlight), transparent 38%),
+    linear-gradient(210deg, var(--glass-highlight-bronze), transparent 46%),
     linear-gradient(180deg, rgba(246, 236, 224, 0.28), rgba(246, 236, 224, 0.16)),
     var(--glass-fill);
   border: 1px solid var(--glass-edge);
   border-radius: var(--glass-radius);
-  box-shadow: var(--shadow-soft), inset 0 1px 0 rgba(255, 250, 244, 0.22);
+  box-shadow:
+    var(--shadow-soft),
+    inset 0 1px 0 rgba(255, 250, 244, 0.24),
+    inset 0 0 0 1px rgba(217, 160, 90, 0.06);
   /* No backdrop-filter — blur frosts scrolled atmosphere into a muddy under-nav band */
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
 }
 
 .glass--quiet {
-  background: rgba(246, 236, 224, 0.14);
-  box-shadow: var(--shadow-lift), inset 0 1px 0 rgba(255, 250, 244, 0.18);
+  background:
+    linear-gradient(160deg, var(--glass-highlight-bronze), transparent 50%),
+    rgba(246, 236, 224, 0.14);
+  box-shadow:
+    var(--shadow-lift),
+    inset 0 1px 0 rgba(255, 250, 244, 0.18),
+    inset 0 0 0 1px rgba(196, 137, 95, 0.08);
 }
 
 .glass--panel {
@@ -338,14 +383,15 @@ textarea {
 
 .site-nav__link:hover {
   color: var(--ivory);
-  background: rgba(247, 241, 234, 0.1);
-  border-color: rgba(247, 241, 234, 0.18);
+  background: var(--bronze-mist);
+  border-color: rgba(201, 132, 61, 0.45);
 }
 
 .site-nav__link.is-active {
   color: var(--ivory);
-  background: var(--accent);
-  border-color: var(--accent-soft);
+  background: var(--forest);
+  border-color: var(--forest-soft);
+  box-shadow: inset 0 1px 0 rgba(255, 250, 244, 0.14);
 }
 
 .site-header .brand-lockup__text,
@@ -354,23 +400,24 @@ textarea {
 }
 
 .site-header .brand-lockup svg [stroke] {
-  stroke: var(--accent-deep);
+  stroke: var(--forest-deep);
 }
 
 .site-header .brand-lockup svg circle {
-  stroke: var(--caramel);
+  stroke: var(--bronze);
 }
 
 .site-header .site-nav__link:hover {
   color: var(--ink);
-  background: rgba(255, 255, 255, 0.4);
-  border-color: rgba(255, 255, 255, 0.55);
+  background: rgba(255, 255, 255, 0.42);
+  border-color: rgba(154, 95, 40, 0.4);
 }
 
 .site-header .site-nav__link.is-active {
   color: var(--ivory);
-  background: var(--accent);
-  border-color: var(--accent-soft);
+  background: var(--forest);
+  border-color: var(--forest-light);
+  box-shadow: inset 0 1px 0 rgba(255, 250, 244, 0.16);
 }
 
 .site-main {
@@ -414,7 +461,8 @@ textarea {
 }
 
 .site-footer__meta a:hover {
-  border-bottom-color: var(--accent-soft);
+  border-bottom-color: var(--bronze-soft);
+  color: var(--ivory);
 }
 
 .site-footer__note {
@@ -422,6 +470,16 @@ textarea {
   max-width: 36rem;
   color: var(--ivory-soft);
   font-size: 0.98rem;
+  border-top: 1px solid var(--caramel-glow);
+  padding-top: var(--space-3);
+}
+
+.site-footer .brand-script {
+  color: var(--ivory);
+}
+
+.site-footer .eyebrow {
+  color: var(--bronze-light);
 }
 
 .eyebrow {
@@ -430,7 +488,7 @@ textarea {
   letter-spacing: 0.16em;
   text-transform: uppercase;
   font-weight: 700;
-  color: var(--ivory-muted);
+  color: var(--bronze-soft);
 }
 
 .brand-script {
@@ -529,8 +587,9 @@ textarea {
   height: 58%;
   background:
     radial-gradient(circle at 50% 40%, rgba(247, 241, 234, 0.26), transparent 62%),
-    radial-gradient(circle at 30% 70%, rgba(165, 111, 69, 0.18), transparent 55%),
-    radial-gradient(circle at 70% 55%, rgba(47, 79, 60, 0.1), transparent 50%);
+    radial-gradient(circle at 30% 70%, var(--caramel-mist), transparent 55%),
+    radial-gradient(circle at 70% 55%, var(--forest-mist), transparent 50%),
+    radial-gradient(circle at 48% 58%, var(--bronze-mist), transparent 48%);
   pointer-events: none;
   filter: blur(2px);
   animation: glow-pulse 10s ease-in-out infinite alternate;
@@ -569,14 +628,14 @@ textarea {
   content: '';
   position: absolute;
   inset: 12%;
-  border: 1px solid rgba(196, 137, 95, 0.4);
+  border: 1px solid var(--caramel-glow);
   border-radius: 50%;
 }
 
 .hero__botanical::after,
 .hero__botanical--right::after {
   inset: 24%;
-  border-color: rgba(247, 241, 234, 0.22);
+  border-color: rgba(47, 79, 60, 0.28);
 }
 
 .band-wrap {
@@ -619,13 +678,14 @@ textarea {
 .text-link {
   color: var(--ivory);
   text-decoration: none;
-  border-bottom: 1px solid var(--caramel-soft);
-  transition: opacity 160ms ease, border-color 160ms ease;
+  border-bottom: 1px solid var(--bronze-soft);
+  transition: opacity 160ms ease, border-color 160ms ease, color 160ms ease;
 }
 
 .text-link:hover {
-  opacity: 0.86;
-  border-bottom-color: var(--accent-soft);
+  opacity: 0.92;
+  border-bottom-color: var(--forest-soft);
+  color: var(--beige-glow);
 }
 
 .btn {
@@ -653,27 +713,44 @@ textarea {
 }
 
 .btn--primary {
-  background: var(--accent);
-  border-color: var(--accent-soft);
+  background: var(--forest);
+  border-color: var(--forest-soft);
   color: var(--ivory);
   box-shadow: inset 0 1px 0 rgba(255, 250, 244, 0.16);
 }
 
 .btn--primary:hover {
-  background: var(--accent-soft);
+  background: var(--forest-mid);
+  border-color: var(--forest-light);
   transform: translateY(-1px);
   box-shadow: var(--shadow-lift), inset 0 1px 0 rgba(255, 250, 244, 0.2);
 }
 
-.btn--ghost {
-  border-color: var(--line-strong);
-  background: rgba(165, 111, 69, 0.16);
+.btn--primary:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--bronze-glow), inset 0 1px 0 rgba(255, 250, 244, 0.16);
 }
 
-.btn--ghost:hover {
-  border-color: var(--ivory-soft);
-  background: rgba(165, 111, 69, 0.26);
+.btn--ghost,
+.btn--secondary {
+  border-color: var(--bronze-mid);
+  background: var(--caramel-wash);
+  color: var(--ivory);
+}
+
+.btn--ghost:hover,
+.btn--secondary:hover {
+  border-color: var(--bronze-soft);
+  background: var(--bronze-mist);
+  color: var(--ivory);
   transform: translateY(-1px);
+  box-shadow: 0 0 0 1px rgba(201, 132, 61, 0.2);
+}
+
+.btn--ghost:focus-visible,
+.btn--secondary:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--bronze-glow);
 }
 
 .inventory-group + .inventory-group {
@@ -682,11 +759,13 @@ textarea {
 
 .inventory-group__title {
   margin: 0 0 var(--space-2);
-  padding-left: 0.15rem;
+  padding-left: 0.65rem;
+  border-left: 3px solid var(--forest-soft);
   font-size: 1.2rem;
   font-weight: 700;
   letter-spacing: 0.02em;
   text-align: left;
+  color: var(--ivory);
 }
 
 .inventory-list {
@@ -716,7 +795,8 @@ textarea {
 .inventory-item:hover {
   transform: translateY(-2px);
   background: var(--glass-fill-strong);
-  border-color: var(--line-strong);
+  border-color: var(--glass-edge-warm);
+  box-shadow: var(--shadow-lift), inset 0 1px 0 rgba(217, 160, 90, 0.2);
 }
 
 .inventory-item h3 {
@@ -738,7 +818,7 @@ textarea {
   margin: 0.15rem 0 0;
   font-size: 0.82rem;
   letter-spacing: 0.02em;
-  color: var(--ivory-muted);
+  color: var(--caramel-light);
 }
 
 .package-list {
@@ -767,7 +847,8 @@ textarea {
 .package:hover {
   transform: translateY(-2px);
   background: var(--glass-fill-strong);
-  border-color: var(--line-strong);
+  border-color: var(--glass-edge-warm);
+  box-shadow: var(--shadow-lift), inset 0 1px 0 rgba(217, 160, 90, 0.22);
 }
 
 .package h2 {
@@ -776,6 +857,22 @@ textarea {
   font-weight: 700;
   letter-spacing: -0.01em;
   text-wrap: balance;
+}
+
+.package__price {
+  margin: 0.15rem 0 0.35rem;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.28rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ivory);
+  background: linear-gradient(135deg, var(--bronze), var(--bronze-mid));
+  border: 1px solid var(--bronze-soft);
+  box-shadow: inset 0 1px 0 rgba(255, 250, 244, 0.18);
 }
 
 .package__summary {
@@ -855,8 +952,8 @@ textarea {
 .field--conditional {
   padding: 0.85rem 0.95rem;
   border-radius: 0.9rem;
-  border: 1px dashed rgba(165, 111, 69, 0.45);
-  background: rgba(165, 111, 69, 0.08);
+  border: 1px dashed var(--bronze-mid);
+  background: var(--bronze-mist);
 }
 
 .field label,
@@ -890,9 +987,9 @@ textarea {
 .field input:focus,
 .field textarea:focus {
   outline: none;
-  border-color: var(--accent-soft);
+  border-color: var(--bronze-soft);
   background: rgba(247, 241, 234, 0.14);
-  box-shadow: 0 0 0 3px var(--accent-glow);
+  box-shadow: 0 0 0 3px var(--bronze-glow);
 }
 
 .field input[type='file'] {
@@ -937,17 +1034,28 @@ textarea {
   min-height: 2.35rem;
   padding: 0.35rem 0.85rem;
   border-radius: 999px;
-  background: rgba(165, 111, 69, 0.12);
+  background: var(--caramel-wash);
   border: 1px solid rgba(247, 241, 234, 0.18);
   font-size: 0.95rem;
   font-weight: 600;
   cursor: pointer;
+  transition: border-color 160ms ease, background 160ms ease;
+}
+
+.choice:hover {
+  border-color: var(--bronze-soft);
+  background: var(--bronze-mist);
+}
+
+.choice:has(input:checked) {
+  border-color: var(--forest-soft);
+  background: var(--forest-mist);
 }
 
 .choice input {
   width: auto;
   margin: 0;
-  accent-color: var(--accent);
+  accent-color: var(--forest);
 }
 
 .inquiry-form > .btn {

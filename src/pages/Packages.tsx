@@ -23,6 +23,7 @@ export function Packages() {
           >
             <p className="eyebrow">{pkg.idealFor}</p>
             <h2>{pkg.name}</h2>
+            <p className="package__price">{pkg.priceLabel}</p>
             <p className="package__summary">{pkg.summary}</p>
             <ul>
               {pkg.includes.map((line) => (
