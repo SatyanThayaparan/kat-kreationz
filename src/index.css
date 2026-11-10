@@ -1,22 +1,22 @@
 :root {
   /*
     Earthy analogous 60 / 30 / 10
-    60 Dominant — Dark beige (page fields, large surfaces)
+    60 Dominant — Pale oak / light maple (page fields, large surfaces)
     30 Secondary — Soft burnt caramel (glass panels, secondary UI — tints/shades)
     10 Accent — Forest green (CTAs, active nav) + bronze/burnt amber
       (highlights, icons, underlines, focus rings, price chips, hovers — sparingly)
   */
 
-  /* —— Beige ladder (60%) —— */
-  --beige-deepest: #8a6d52;
-  --beige-deep: #9a7a5c;
-  --beige: #b89778;
-  --beige-mid: #c4a484;
-  --beige-soft: #d0b59a;
-  --beige-mist: #dcc9b0;
-  --beige-glow: #e6d4bc;
+  /* —— Pale oak / light maple ladder (60%) —— */
+  --beige-deepest: #b59a76;
+  --beige-deep: #c9b18e;
+  --beige: #ddc9ab;
+  --beige-mid: #e6d6bc;
+  --beige-soft: #eee3d2;
+  --beige-mist: #f3ece1;
+  --beige-glow: #f7f2ea;
   /* Exact solid match for top-of-page atmosphere + pill underlay */
-  --bg: #d4c2a8;
+  --bg: #ebe4d5;
 
   /* Legacy aliases → dominant beige ladder */
   --tan: var(--beige);
@@ -33,9 +33,9 @@
   --caramel-mid: #b87d52;
   --caramel-soft: #c4895f;
   --caramel-light: #d4a078;
-  --caramel-mist: rgba(165, 111, 69, 0.3);
-  --caramel-wash: rgba(165, 111, 69, 0.14);
-  --caramel-glow: rgba(196, 137, 95, 0.42);
+  --caramel-mist: rgba(165, 111, 69, 0.28);
+  --caramel-wash: rgba(165, 111, 69, 0.12);
+  --caramel-glow: rgba(196, 137, 95, 0.38);
 
   /* —— Forest green ladder (10% primary accent) —— */
   --forest-deepest: #1a2e22;
@@ -44,8 +44,8 @@
   --forest-mid: #3a5c47;
   --forest-soft: #3f6650;
   --forest-light: #557a64;
-  --forest-glow: rgba(47, 79, 60, 0.24);
-  --forest-mist: rgba(47, 79, 60, 0.12);
+  --forest-glow: rgba(47, 79, 60, 0.22);
+  --forest-mist: rgba(47, 79, 60, 0.1);
 
   /* Accent aliases → forest (primary 10%) */
   --accent: var(--forest);
@@ -61,34 +61,36 @@
   --bronze-mid: #b87333;
   --bronze-soft: #c9843d;
   --bronze-light: #d9a05a;
-  --bronze-glow: rgba(154, 95, 40, 0.28);
-  --bronze-mist: rgba(154, 95, 40, 0.16);
+  --bronze-glow: rgba(154, 95, 40, 0.26);
+  --bronze-mist: rgba(154, 95, 40, 0.14);
 
   --ivory: #f7f1ea;
   --ivory-soft: rgba(247, 241, 234, 0.9);
   --ivory-muted: rgba(247, 241, 234, 0.68);
   --ink: #2c2620;
   --ink-soft: rgba(44, 38, 32, 0.72);
+  --ink-muted: rgba(44, 38, 32, 0.58);
   /* Warm highlight aliases → bronze */
   --gold: var(--bronze-soft);
   --gold-deep: var(--bronze);
-  --line: rgba(247, 241, 234, 0.26);
-  --line-strong: rgba(247, 241, 234, 0.4);
+  /* Ink-based rules for pale oak surfaces */
+  --line: rgba(44, 38, 32, 0.14);
+  --line-strong: rgba(44, 38, 32, 0.24);
   /*
-    Caramel-tinted glass that stays LIGHTER than --bg —
+    Soft maple glass that stays LIGHTER than --bg —
     dark caramel fills smear into a muddy under-nav band when masked.
   */
-  --glass-fill: rgba(246, 236, 224, 0.22);
-  --glass-fill-strong: rgba(246, 236, 224, 0.32);
-  --glass-edge: rgba(196, 137, 95, 0.42);
-  --glass-edge-warm: rgba(154, 95, 40, 0.36);
-  --glass-highlight: rgba(255, 252, 248, 0.55);
-  --glass-highlight-bronze: rgba(217, 160, 90, 0.18);
+  --glass-fill: rgba(255, 252, 247, 0.38);
+  --glass-fill-strong: rgba(255, 252, 247, 0.52);
+  --glass-edge: rgba(196, 137, 95, 0.36);
+  --glass-edge-warm: rgba(154, 95, 40, 0.3);
+  --glass-highlight: rgba(255, 253, 250, 0.62);
+  --glass-highlight-bronze: rgba(217, 160, 90, 0.14);
   --glass-blur: 12px;
   --glass-radius: 1.15rem;
-  --shadow-soft: 0 16px 40px rgba(44, 38, 32, 0.14);
-  --shadow-lift: 0 8px 22px rgba(44, 38, 32, 0.12);
-  --danger: #f0c4b4;
+  --shadow-soft: 0 16px 40px rgba(44, 38, 32, 0.1);
+  --shadow-lift: 0 8px 22px rgba(44, 38, 32, 0.08);
+  --danger: #b85a48;
   --space-1: 0.5rem;
   --space-2: 0.75rem;
   --space-3: 1rem;
@@ -103,7 +105,7 @@
   --narrow: 720px;
   --gutter: 1rem;
   --side-gutter: clamp(0.75rem, 2.5vw, 1.75rem);
-  color: var(--ivory);
+  color: var(--ink);
   background: var(--beige);
   font-family: var(--font-sans);
   font-weight: 400;
@@ -131,7 +133,7 @@ body {
   /* --bg solid through the nav strip so pill underlay + under-nav match */
   background-color: var(--bg);
   background-image:
-    radial-gradient(ellipse 55% 40% at 88% 18%, rgba(247, 241, 234, 0.12), transparent 52%),
+    radial-gradient(ellipse 55% 40% at 88% 18%, rgba(255, 252, 247, 0.28), transparent 52%),
     radial-gradient(ellipse 38% 30% at 12% 28%, var(--forest-mist), transparent 58%),
     radial-gradient(ellipse 45% 35% at 70% 78%, var(--caramel-mist), transparent 60%),
     linear-gradient(
@@ -145,11 +147,11 @@ body {
       -18deg,
       transparent 0,
       transparent 11px,
-      rgba(247, 241, 234, 0.02) 11px,
-      rgba(247, 241, 234, 0.02) 12px
+      rgba(255, 252, 247, 0.035) 11px,
+      rgba(255, 252, 247, 0.035) 12px
     );
   background-attachment: fixed;
-  color: var(--ivory);
+  color: var(--ink);
 }
 
 a {
@@ -194,7 +196,7 @@ textarea {
   animation: atmosphere 18s ease-in-out infinite alternate;
 }
 
-/* Soft side-column atmosphere: deeper beige gutters outside the content shell */
+/* Soft side-column atmosphere: warmer oak gutters outside the content shell */
 .site::after {
   content: '';
   position: fixed;
@@ -204,10 +206,10 @@ textarea {
   background:
     linear-gradient(
       90deg,
-      rgba(154, 122, 92, 0.24) 0%,
+      rgba(201, 177, 142, 0.22) 0%,
       transparent min(5vw, 3.5rem),
       transparent calc(100% - min(5vw, 3.5rem)),
-      rgba(154, 122, 92, 0.24) 100%
+      rgba(201, 177, 142, 0.22) 100%
     );
 }
 
@@ -330,14 +332,14 @@ textarea {
   background:
     linear-gradient(155deg, var(--glass-highlight), transparent 38%),
     linear-gradient(210deg, var(--glass-highlight-bronze), transparent 46%),
-    linear-gradient(180deg, rgba(246, 236, 224, 0.28), rgba(246, 236, 224, 0.16)),
+    linear-gradient(180deg, rgba(255, 252, 247, 0.42), rgba(255, 252, 247, 0.22)),
     var(--glass-fill);
   border: 1px solid var(--glass-edge);
   border-radius: var(--glass-radius);
   box-shadow:
     var(--shadow-soft),
-    inset 0 1px 0 rgba(255, 250, 244, 0.24),
-    inset 0 0 0 1px rgba(217, 160, 90, 0.06);
+    inset 0 1px 0 rgba(255, 253, 250, 0.35),
+    inset 0 0 0 1px rgba(217, 160, 90, 0.05);
   /* No backdrop-filter — blur frosts scrolled atmosphere into a muddy under-nav band */
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
@@ -346,10 +348,10 @@ textarea {
 .glass--quiet {
   background:
     linear-gradient(160deg, var(--glass-highlight-bronze), transparent 50%),
-    rgba(246, 236, 224, 0.14);
+    rgba(255, 252, 247, 0.22);
   box-shadow:
     var(--shadow-lift),
-    inset 0 1px 0 rgba(255, 250, 244, 0.18),
+    inset 0 1px 0 rgba(255, 253, 250, 0.28),
     inset 0 0 0 1px rgba(196, 137, 95, 0.08);
 }
 
@@ -371,12 +373,12 @@ textarea {
   box-sizing: border-box;
   border-radius: 999px;
   /*
-    Solid --bg underlay (same pixel as body top) + barely-there ivory frost.
+    Solid --bg underlay (same pixel as body top) + barely-there maple frost.
     Frost kept mild so the pill bottom does not read as a lighter slab / seam
-    against the continuous beige atmosphere. No backdrop-filter, no shadow.
+    against the continuous pale-oak atmosphere. No backdrop-filter, no shadow.
   */
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.02)),
+    linear-gradient(180deg, rgba(255, 253, 250, 0.18), rgba(255, 253, 250, 0.04)),
     var(--bg);
   border: 0;
   box-shadow: none;
@@ -412,7 +414,7 @@ textarea {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   text-decoration: none;
-  color: var(--ivory-soft);
+  color: var(--ink-soft);
   padding: 0.5rem 0.8rem;
   border-radius: 999px;
   border: 1px solid transparent;
@@ -424,7 +426,7 @@ textarea {
 }
 
 .site-nav__link:hover {
-  color: var(--ivory);
+  color: var(--ink);
   background: var(--bronze-mist);
   border-color: rgba(201, 132, 61, 0.45);
 }
@@ -504,20 +506,20 @@ textarea {
 
 .site-footer__meta a:hover {
   border-bottom-color: var(--bronze-soft);
-  color: var(--ivory);
+  color: var(--bronze-deep);
 }
 
 .site-footer__note {
   margin: 0;
   max-width: 36rem;
-  color: var(--ivory-soft);
+  color: var(--ink-soft);
   font-size: 0.98rem;
   border-top: 1px solid var(--caramel-glow);
   padding-top: var(--space-3);
 }
 
 .site-footer .brand-script {
-  color: var(--ivory);
+  color: var(--forest);
 }
 
 .site-footer .eyebrow {
@@ -562,7 +564,7 @@ textarea {
 .section-copy {
   margin: 0;
   max-width: 40rem;
-  color: var(--ivory-soft);
+  color: var(--ink-soft);
   font-size: 1.02rem;
   text-align: left;
   text-wrap: pretty;
@@ -597,14 +599,14 @@ textarea {
 .hero__content .brand-script {
   margin: 0.2rem 0 0;
   font-size: clamp(2.35rem, 6.5vw, 3.5rem);
-  color: color-mix(in srgb, var(--ivory) 86%, var(--forest-light) 14%);
-  text-shadow: 0 8px 24px rgba(61, 52, 44, 0.1);
+  color: color-mix(in srgb, var(--forest) 78%, var(--ink) 22%);
+  text-shadow: 0 8px 24px rgba(61, 52, 44, 0.08);
 }
 
 .hero__lede {
   margin: 0.85rem 0 0;
   max-width: 28rem;
-  color: var(--ivory-soft);
+  color: var(--ink-soft);
   font-size: 1.05rem;
   text-wrap: pretty;
 }
@@ -630,7 +632,7 @@ textarea {
   inset: 8% 12% auto;
   height: 58%;
   background:
-    radial-gradient(circle at 50% 40%, rgba(247, 241, 234, 0.26), transparent 62%),
+    radial-gradient(circle at 50% 40%, rgba(255, 252, 247, 0.42), transparent 62%),
     radial-gradient(circle at 30% 70%, var(--caramel-mist), transparent 55%),
     radial-gradient(circle at 70% 55%, var(--forest-mist), transparent 50%),
     radial-gradient(circle at 48% 58%, var(--bronze-mist), transparent 48%);
@@ -644,7 +646,7 @@ textarea {
   position: absolute;
   width: min(42vw, 280px);
   height: min(42vw, 280px);
-  border: 1px solid rgba(247, 241, 234, 0.18);
+  border: 1px solid rgba(44, 38, 32, 0.1);
   border-radius: 50%;
   opacity: 0.5;
   pointer-events: none;
@@ -716,11 +718,11 @@ textarea {
   flex-wrap: wrap;
   gap: 0.55rem 0.8rem;
   align-items: center;
-  color: var(--ivory-soft);
+  color: var(--ink-soft);
 }
 
 .text-link {
-  color: var(--ivory);
+  color: var(--ink);
   text-decoration: none;
   border-bottom: 1px solid var(--bronze-soft);
   transition: opacity 160ms ease, border-color 160ms ease, color 160ms ease;
@@ -729,14 +731,14 @@ textarea {
 .text-link:hover {
   opacity: 0.92;
   border-bottom-color: var(--forest-soft);
-  color: var(--beige-glow);
+  color: var(--forest);
 }
 
 .btn {
   appearance: none;
   border: 1px solid transparent;
   background: transparent;
-  color: var(--ivory);
+  color: var(--ink);
   cursor: pointer;
   display: inline-flex;
   align-items: center;
@@ -779,14 +781,14 @@ textarea {
 .btn--secondary {
   border-color: var(--bronze-mid);
   background: var(--caramel-wash);
-  color: var(--ivory);
+  color: var(--ink);
 }
 
 .btn--ghost:hover,
 .btn--secondary:hover {
   border-color: var(--bronze-soft);
   background: var(--bronze-mist);
-  color: var(--ivory);
+  color: var(--ink);
   transform: translateY(-1px);
   box-shadow: 0 0 0 1px rgba(201, 132, 61, 0.2);
 }
@@ -854,7 +856,7 @@ textarea {
 
 .inventory-item__blurb {
   margin: 0;
-  color: var(--ivory-soft);
+  color: var(--ink-soft);
   font-size: 0.98rem;
   text-wrap: pretty;
 }
@@ -923,7 +925,7 @@ textarea {
 
 .package__summary {
   margin: 0 0 0.35rem;
-  color: var(--ivory-soft);
+  color: var(--ink-soft);
   font-size: 0.98rem;
   text-wrap: pretty;
 }
@@ -931,7 +933,7 @@ textarea {
 .package ul {
   margin: 0 0 1.1rem;
   padding-left: 1.1rem;
-  color: var(--ivory-soft);
+  color: var(--ink-soft);
   flex: 1;
   width: 100%;
 }
@@ -948,7 +950,7 @@ textarea {
 .page-cta {
   margin-top: var(--space-5);
   padding: 1rem 1.15rem;
-  color: var(--ivory-soft);
+  color: var(--ink-soft);
   text-align: left;
 }
 
@@ -1010,15 +1012,15 @@ textarea {
   letter-spacing: 0.04em;
   text-transform: uppercase;
   font-weight: 700;
-  color: var(--ivory-soft);
+  color: var(--ink-soft);
 }
 
 .field input,
 .field textarea {
   width: 100%;
   border: 1px solid var(--line);
-  background: rgba(247, 241, 234, 0.1);
-  color: var(--ivory);
+  background: rgba(255, 252, 247, 0.55);
+  color: var(--ink);
   padding: 0.78rem 0.9rem;
   border-radius: 0.75rem;
   font-size: 1rem;
@@ -1035,7 +1037,7 @@ textarea {
 .field textarea:focus {
   outline: none;
   border-color: var(--bronze-soft);
-  background: rgba(247, 241, 234, 0.14);
+  background: rgba(255, 252, 247, 0.78);
   box-shadow: 0 0 0 3px var(--bronze-glow);
 }
 
@@ -1054,7 +1056,7 @@ textarea {
 }
 
 .field-hint {
-  color: var(--ivory-muted);
+  color: var(--ink-muted);
 }
 
 .field-error {
@@ -1082,7 +1084,7 @@ textarea {
   padding: 0.35rem 0.85rem;
   border-radius: 999px;
   background: var(--caramel-wash);
-  border: 1px solid rgba(247, 241, 234, 0.18);
+  border: 1px solid rgba(44, 38, 32, 0.12);
   font-size: 0.95rem;
   font-weight: 600;
   cursor: pointer;
@@ -1120,10 +1122,10 @@ textarea {
   padding: 0.95rem 1rem;
   overflow: auto;
   white-space: pre-wrap;
-  background: rgba(61, 52, 44, 0.16);
+  background: rgba(44, 38, 32, 0.06);
   border: 1px solid var(--line);
   border-radius: 0.85rem;
-  color: var(--ivory-soft);
+  color: var(--ink-soft);
   font-size: 0.9rem;
   line-height: 1.5;
   text-align: left;
