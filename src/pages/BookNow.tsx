@@ -130,8 +130,8 @@ export function BookNow() {
   }
 
   return (
-    <section id="book" className="page page--narrow section-anchor" aria-labelledby="book-heading">
-      <header className="page-header glass glass--quiet glass-enter">
+    <section id="book" className="page section-anchor" aria-labelledby="book-heading">
+      <header className="page-header page-header--open content-width glass-enter">
         <p className="eyebrow">Inquire</p>
         <h2 id="book-heading" className="section-title">
           Book Now
@@ -143,7 +143,7 @@ export function BookNow() {
         </p>
       </header>
 
-      <form className="inquiry-form" onSubmit={onSubmit} noValidate>
+      <form className="inquiry-form content-width" onSubmit={onSubmit} noValidate>
         <fieldset className="glass glass--panel glass-enter glass-enter--delay-1" aria-labelledby="about-you-title">
           <p className="fieldset-title" id="about-you-title">
             About you
@@ -386,7 +386,7 @@ export function BookNow() {
       </form>
 
       {status !== 'idle' && (
-        <div className="inquiry-success glass glass--panel glass-enter" role="status">
+        <div className="inquiry-success glass glass--panel glass-enter content-width" role="status">
           <h2 className="section-title">Your inquiry is ready</h2>
           <p className="section-copy">
             Open a draft email to <strong>{brand.inquiryEmail}</strong> (placeholder — update when

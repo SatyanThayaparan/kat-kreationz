@@ -146,30 +146,42 @@ export function Layout() {
             </div>
           </main>
 
-          <footer className="site-footer glass">
-            <div className="site-footer__brand">
-              <LogoMark size={56} />
+          <section className="contact-us" aria-labelledby="contact-heading">
+            <div className="contact-us__inner content-width">
+              <p className="eyebrow">Reach out</p>
+              <h2 id="contact-heading" className="section-title contact-us__title">
+                Contact Us
+              </h2>
+              <p className="section-copy contact-us__lede">
+                Questions about a date, a color story, or a venue? We&apos;d love to hear from you.
+              </p>
+              <div className="contact-us__links">
+                <a href={`tel:${brand.phoneTel}`} className="contact-chip contact-chip--soft">
+                  <PhoneIcon />
+                  <span>{brand.phoneDisplay}</span>
+                </a>
+                <a
+                  href={brand.instagramUrl}
+                  className="contact-chip contact-chip--soft"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <InstagramIcon />
+                  <span>@{brand.instagram}</span>
+                </a>
+              </div>
+            </div>
+          </section>
+
+          <footer className="site-footer">
+            <div className="site-footer__brand content-width">
+              <LogoMark size={48} />
               <div>
                 <p className="brand-script site-footer__title">{brand.name.toLowerCase()}</p>
                 <p className="eyebrow">{brand.tagline}</p>
               </div>
             </div>
-            <div className="site-footer__meta">
-              <a href={`tel:${brand.phoneTel}`} className="contact-chip">
-                <PhoneIcon />
-                <span>{brand.phoneDisplay}</span>
-              </a>
-              <a
-                href={brand.instagramUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="contact-chip"
-              >
-                <InstagramIcon />
-                <span>@{brand.instagram}</span>
-              </a>
-            </div>
-            <p className="site-footer__note">
+            <p className="site-footer__note content-width">
               Thank you for dreaming with us — we can&apos;t wait to style your next celebration.
             </p>
           </footer>

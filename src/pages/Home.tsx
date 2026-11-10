@@ -1,4 +1,3 @@
-import { InstagramIcon, PhoneIcon } from '../components/ContactIcons'
 import { LogoMark } from '../components/LogoMark'
 import { brand } from '../data/content'
 
@@ -15,15 +14,14 @@ export function Home({ onNavigate }: HomeProps) {
         <div className="hero__botanical hero__botanical--right" aria-hidden="true" />
         <div className="hero__content">
           <LogoMark size={132} className="hero__mark rise" />
-          <p className="brand-wordmark rise delay-1" id="hero-brand">
+          <h1 className="brand-wordmark brand-wordmark--hero rise delay-1" id="hero-brand">
             {brand.name.toUpperCase()}
-          </p>
-          <h1 className="brand-script rise delay-2">{brand.name.toLowerCase()}</h1>
-          <p className="hero__lede rise delay-3">
+          </h1>
+          <p className="hero__lede rise delay-2">
             Thoughtful event decor — arches, plinths, balloons, and soft details styled with care for
             your celebration.
           </p>
-          <div className="hero__actions rise delay-4">
+          <div className="hero__actions rise delay-3">
             <button type="button" className="btn btn--primary" onClick={() => onNavigate('book')}>
               Book Now
             </button>
@@ -47,39 +45,24 @@ export function Home({ onNavigate }: HomeProps) {
         </div>
       </div>
 
-      <div className="band-wrap">
-        <section
-          className="welcome glass glass--panel glass-enter glass-enter--delay-2"
-          aria-labelledby="welcome-heading"
-        >
-          <div className="welcome__accent" aria-hidden="true" />
-          <div className="welcome__body">
-            <p className="eyebrow">Welcome</p>
+      <section className="welcome welcome--editorial rise delay-2" aria-labelledby="welcome-heading">
+        <div className="welcome__orbit" aria-hidden="true" />
+        <div className="welcome__inner content-width">
+          <p className="welcome__script" aria-hidden="true">
+            welcome
+          </p>
+          <div className="welcome__copy">
+            <p className="eyebrow">A note from the studio</p>
             <h2 id="welcome-heading" className="section-title">
-              Decor that feels personal
+              Styled with you, not for a trend
             </h2>
             <p className="section-copy">
               Hi, we&apos;re {brand.name}. We collaborate closely on color, silhouette, and timing so
               your space feels warm, intentional, and wholly yours — never cookie-cutter.
             </p>
-            <div className="home-links">
-              <a href={`tel:${brand.phoneTel}`} className="contact-chip contact-chip--soft">
-                <PhoneIcon />
-                <span>{brand.phoneDisplay}</span>
-              </a>
-              <a
-                href={brand.instagramUrl}
-                className="contact-chip contact-chip--soft"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <InstagramIcon />
-                <span>@{brand.instagram}</span>
-              </a>
-            </div>
           </div>
-        </section>
-      </div>
+        </div>
+      </section>
     </section>
   )
 }

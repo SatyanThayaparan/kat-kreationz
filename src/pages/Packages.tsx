@@ -13,7 +13,7 @@ const toneClass: Record<string, string> = {
 export function Packages({ onNavigate }: PackagesProps) {
   return (
     <section id="packages" className="page section-anchor" aria-labelledby="packages-heading">
-      <header className="page-header glass glass--quiet glass-enter">
+      <header className="page-header page-header--open content-width glass-enter">
         <p className="eyebrow">Offerings</p>
         <h2 id="packages-heading" className="section-title">
           Packages
@@ -24,7 +24,7 @@ export function Packages({ onNavigate }: PackagesProps) {
         </p>
       </header>
 
-      <div className="package-list">
+      <div className="package-list content-width">
         {packages.map((pkg, index) => (
           <article
             key={pkg.id}
