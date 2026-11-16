@@ -1,53 +1,45 @@
 type LogoMarkProps = {
   size?: number
   className?: string
+  /** Full circle (nav/footer) or flat-bottom mark for hero + wordmark. */
+  variant?: 'mark' | 'hero'
+  alt?: string
 }
 
-/** Forest/bronze strokes — readable on pale oak without a dark backing slab. */
-export function LogoMark({ size = 120, className = '' }: LogoMarkProps) {
+/**
+ * Brand logo from the overlapping script KK artwork.
+ * - mark: full circular emblem (navbar / footer)
+ * - hero: bottom of circle cropped flat for text underneath
+ */
+export function LogoMark({
+  size = 120,
+  className = '',
+  variant = 'mark',
+  alt = 'Kat Kreationz logo',
+}: LogoMarkProps) {
+  if (variant === 'hero') {
+    const height = Math.round(size * 0.89)
+    return (
+      <img
+        className={`logo-mark logo-mark--hero ${className}`.trim()}
+        src="/brand/kat-kreationz-mark-script-hero-v4.png"
+        alt={alt}
+        width={size}
+        height={height}
+        decoding="async"
+      />
+    )
+  }
+
   return (
-    <svg
-      className={className}
+    <img
+      className={`logo-mark ${className}`.trim()}
+      src="/brand/kat-kreationz-mark-script-v4.png"
+      alt={alt}
       width={size}
       height={size}
-      viewBox="0 0 160 160"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      role="img"
-      aria-label="Kat Kreationz logo"
-    >
-      <circle cx="80" cy="80" r="72" stroke="var(--bronze)" strokeWidth="1.4" />
-      <circle cx="80" cy="80" r="66" stroke="var(--bronze-mid)" strokeWidth="0.7" opacity="0.75" />
-      <path
-        d="M48 48 L48 112 M48 80 L82 48 M48 80 L82 112"
-        stroke="var(--forest-deep)"
-        strokeWidth="5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M72 48 L72 112 M72 80 L106 48 M72 80 L106 112"
-        stroke="var(--forest)"
-        strokeWidth="5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        opacity="0.55"
-      />
-      <path
-        d="M28 108 C38 98, 44 84, 48 68 C52 84, 58 98, 70 110"
-        stroke="var(--forest-mid)"
-        strokeWidth="1.6"
-        strokeLinecap="round"
-        fill="none"
-      />
-      <path
-        d="M34 104 C40 96, 44 88, 46 78"
-        stroke="var(--forest-soft)"
-        strokeWidth="1.2"
-        strokeLinecap="round"
-        fill="none"
-        opacity="0.7"
-      />
-    </svg>
+      decoding="async"
+      style={{ width: size, height: size }}
+    />
   )
 }

@@ -1,21 +1,22 @@
 import { inventory } from '../data/content'
+import { prefillFromInventory } from '../lib/booking'
+import type { BookPrefill } from '../lib/booking'
 
 const categories = [...new Set(inventory.map((item) => item.category))]
 
 type InventoryProps = {
-  onNavigate: (id: 'book' | 'packages' | 'inventory' | 'home') => void
+  onBook: (prefill?: BookPrefill) => void
 }
 
-export function Inventory({ onNavigate }: InventoryProps) {
+export function Inventory({ onBook }: InventoryProps) {
   return (
     <section id="inventory" className="page section-anchor" aria-labelledby="inventory-heading">
-      <header className="page-header page-header--open content-width glass-enter">
-        <p className="eyebrow">Rentals</p>
+      <header className="page-header page-header--open content-width">
         <h2 id="inventory-heading" className="section-title">
           Inventory
         </h2>
         <p className="section-copy">
-          Sample pieces available for styled events. Share your vision on Book Now and we&apos;ll
+          Pieces available for styled events. Add the ones you want to your inquiry — we&apos;ll
           confirm finishes, quantities, and timing together.
         </p>
       </header>
@@ -33,27 +34,43 @@ export function Inventory({ onNavigate }: InventoryProps) {
           return (
             <section
               key={category}
-              className={`inventory-band ${layout} glass-enter glass-enter--delay-${Math.min(groupIndex + 1, 5)}`}
+              className={`inventory-band ${layout}`}
               aria-labelledby={`inventory-cat-${groupIndex}`}
             >
-              <div className="inventory-band__head">
-                <span className="inventory-band__index" aria-hidden="true">
-                  {String(groupIndex + 1).padStart(2, '0')}
-                </span>
-                <h3 className="inventory-band__title" id={`inventory-cat-${groupIndex}`}>
-                  {category}
-                </h3>
-              </div>
+              <h3 className="inventory-band__title" id={`inventory-cat-${groupIndex}`}>
+                {category}
+              </h3>
               <ul className="inventory-mosaic">
                 {items.map((item, itemIndex) => (
                   <li
                     key={item.id}
                     className={`inventory-tile inventory-tile--tone-${(itemIndex % 3) + 1}`}
                   >
-                    <div className="inventory-tile__accent" aria-hidden="true" />
-                    <h4>{item.name}</h4>
-                    <p className="inventory-item__blurb">{item.blurb}</p>
-                    <p className="inventory-item__note">{item.note}</p>
+                    <div className="inventory-tile__media">
+                      <img
+                        src={item.src}
+                        alt={item.alt}
+                        width={640}
+                        height={480}
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
+                    <div className="inventory-tile__body">
+                      <h4>{item.name}</h4>
+                      <p className="inventory-item__blurb">{item.blurb}</p>
+                      <p className="inventory-item__meta">
+                        <span>{item.size}</span>
+                        <span>{item.finish}</span>
+                      </p>
+                      <button
+                        type="button"
+                        className="btn btn--secondary inventory-tile__book"
+                        onClick={() => onBook(prefillFromInventory(item))}
+                      >
+                        Add to inquiry
+                      </button>
+                    </div>
                   </li>
                 ))}
               </ul>
@@ -62,10 +79,14 @@ export function Inventory({ onNavigate }: InventoryProps) {
         })}
       </div>
 
-      <p className="page-cta page-cta--open content-width glass-enter glass-enter--delay-4">
+      <p className="page-cta page-cta--open content-width">
         Ready to reserve a look?{' '}
-        <button type="button" className="text-link text-link--button" onClick={() => onNavigate('book')}>
-          Start your inquiry
+        <button
+          type="button"
+          className="text-link text-link--button"
+          onClick={() => onBook()}
+        >
+          Book now
         </button>
       </p>
     </section>
