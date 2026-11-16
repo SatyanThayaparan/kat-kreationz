@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none" role="img" aria-label="Kat Kreationz">
+  <!-- Soft imperfect rings -->
+  <g fill="none" stroke-linecap="round">
+    <path
+      d="M27 110 C30 56, 64 22, 100 21 C140 20, 173 56, 175 102 C177 148, 142 177, 100 178 C58 179, 25 146, 25 108"
+      stroke="#9a5f28"
+      stroke-width="1.3"
+      opacity="0.88"
+    />
+    <path
+      d="M37 108 C40 66, 68 36, 100 34 C134 32, 162 64, 164 104 C166 142, 138 166, 100 168 C64 170, 36 140, 36 106"
+      stroke="#c9843d"
+      stroke-width="0.9"
+      opacity="0.68"
+    />
+    <path
+      d="M46 106 C48 72, 72 48, 100 46 C130 44, 152 72, 152 104 C152 136, 128 158, 100 160 C72 162, 46 136, 46 106"
+      stroke="#8b5a36"
+      stroke-width="0.75"
+      opacity="0.5"
+    />
+  </g>
+
+  <!-- Botanical stems — bottom left -->
+  <g stroke="#6f4528" stroke-linecap="round" fill="none" opacity="0.72">
+    <path d="M42 156 C51 134, 58 112, 66 92" stroke-width="1.15"/>
+    <path d="M52 158 C59 138, 68 118, 78 100" stroke-width="1"/>
+    <path d="M34 148 C44 132, 52 116, 60 102" stroke-width="0.9" opacity="0.7"/>
+  </g>
+
+  <!--
+    Clean dual KK — two distinct letters with breathing room.
+    Each K is one continuous calligraphic path (stem + arms)
+    so joins stay intentional instead of scribbled overlaps.
+  -->
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Right K (dark brown) -->
+    <path
+      d="M124 54
+         C124.5 72, 125 96, 125.5 130
+         M125 88
+         C136 76, 147 64, 158 54
+         M125 88
+         C136 102, 146 116, 155 130"
+      stroke="#3d2918"
+      stroke-width="2.95"
+    />
+
+    <!-- Left K (forest) -->
+    <path
+      d="M72 46
+         C71 54, 74 68, 76 88
+         C78 108, 79.5 122, 81 138
+         M76 86
+         C88 72, 98 60, 108 50
+         M76 86
+         C88 100, 96 114, 104 128"
+      stroke="#243d2e"
+      stroke-width="3.25"
+    />
+  </g>
+</svg>

@@ -1,50 +1,93 @@
-import { Link } from 'react-router-dom'
 import { inventory } from '../data/content'
+import { prefillFromInventory } from '../lib/booking'
+import type { BookPrefill } from '../lib/booking'
 
 const categories = [...new Set(inventory.map((item) => item.category))]
 
-export function Inventory() {
+type InventoryProps = {
+  onBook: (prefill?: BookPrefill) => void
+}
+
+export function Inventory({ onBook }: InventoryProps) {
   return (
-    <section className="page" aria-labelledby="inventory-heading">
-      <header className="page-header glass glass--quiet glass-enter">
-        <p className="eyebrow">Rentals</p>
-        <h1 id="inventory-heading" className="section-title">
+    <section id="inventory" className="page section-anchor" aria-labelledby="inventory-heading">
+      <header className="page-header page-header--open content-width">
+        <h2 id="inventory-heading" className="section-title">
           Inventory
-        </h1>
+        </h2>
         <p className="section-copy">
-          Sample pieces available for styled events. Share your vision on Book Now and we&apos;ll
+          Pieces available for styled events. Add the ones you want to your inquiry — we&apos;ll
           confirm finishes, quantities, and timing together.
         </p>
       </header>
 
-      {categories.map((category, groupIndex) => (
-        <div key={category} className="inventory-group">
-          <h2 className="inventory-group__title glass-enter glass-enter--delay-1">{category}</h2>
-          <ul className="inventory-list">
-            {inventory
-              .filter((item) => item.category === category)
-              .map((item, itemIndex) => {
-                const stagger = Math.min(groupIndex * 2 + itemIndex + 2, 5)
-                return (
+      <div className="inventory-stage content-width">
+        {categories.map((category, groupIndex) => {
+          const items = inventory.filter((item) => item.category === category)
+          const layout =
+            items.length === 1
+              ? 'inventory-band--solo'
+              : items.length === 2
+                ? 'inventory-band--pair'
+                : 'inventory-band--grid'
+
+          return (
+            <section
+              key={category}
+              className={`inventory-band ${layout}`}
+              aria-labelledby={`inventory-cat-${groupIndex}`}
+            >
+              <h3 className="inventory-band__title" id={`inventory-cat-${groupIndex}`}>
+                {category}
+              </h3>
+              <ul className="inventory-mosaic">
+                {items.map((item, itemIndex) => (
                   <li
                     key={item.id}
-                    className={`inventory-item glass glass--quiet glass-enter glass-enter--delay-${stagger}`}
+                    className={`inventory-tile inventory-tile--tone-${(itemIndex % 3) + 1}`}
                   >
-                    <h3>{item.name}</h3>
-                    <p className="inventory-item__blurb">{item.blurb}</p>
-                    <p className="inventory-item__note">{item.note}</p>
+                    <div className="inventory-tile__media">
+                      <img
+                        src={item.src}
+                        alt={item.alt}
+                        width={640}
+                        height={480}
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
+                    <div className="inventory-tile__body">
+                      <h4>{item.name}</h4>
+                      <p className="inventory-item__blurb">{item.blurb}</p>
+                      <p className="inventory-item__meta">
+                        <span>{item.size}</span>
+                        <span>{item.finish}</span>
+                      </p>
+                      <button
+                        type="button"
+                        className="btn btn--secondary inventory-tile__book"
+                        onClick={() => onBook(prefillFromInventory(item))}
+                      >
+                        Add to inquiry
+                      </button>
+                    </div>
                   </li>
-                )
-              })}
-          </ul>
-        </div>
-      ))}
+                ))}
+              </ul>
+            </section>
+          )
+        })}
+      </div>
 
-      <p className="page-cta glass glass--quiet glass-enter glass-enter--delay-4">
+      <p className="page-cta page-cta--open content-width">
         Ready to reserve a look?{' '}
-        <Link className="text-link" to="/book">
-          Start your inquiry
-        </Link>
+        <button
+          type="button"
+          className="text-link text-link--button"
+          onClick={() => onBook()}
+        >
+          Book now
+        </button>
       </p>
     </section>
   )
