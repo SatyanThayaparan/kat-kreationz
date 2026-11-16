@@ -17,18 +17,27 @@ Marketing site for Kat Kreationz event décor — packages, inventory, gallery, 
 
 ## Setup
 
-1. Install Node.js 20+.
-2. Install dependencies:
+1. Clone the repo and enter the project folder:
+
+```bash
+git clone https://github.com/SatyanThayaparan/kat-kreationz.git
+cd kat-kreationz
+```
+
+2. Install [Node.js 20+](https://nodejs.org/).
+3. Install dependencies:
 
 ```bash
 npm install
 ```
 
-3. Start the dev server:
+4. Start the dev server:
 
 ```bash
 npm run dev
 ```
+
+5. Open the local Vite URL (usually `http://localhost:5173`).
 
 ## Usage
 
@@ -36,7 +45,7 @@ npm run dev
 - `npm run build` — production build
 - `npm run preview` — preview the production build
 
-Open the local Vite URL (usually `http://localhost:5173`) to browse the site. Booking currently sends a mailto draft; connect a form provider for production delivery.
+Booking currently sends a mailto draft; connect a form provider for production delivery.
 
 ## Project structure
 
